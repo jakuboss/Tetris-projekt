@@ -149,6 +149,27 @@ namespace Tetirs
                 }
             }
 
+            if(BlockLabels[2].BackColor==_blockEmptyColor[1]&&BlockLabels[2+5].BackColor==_blockEmptyColor[1])
+            {
+                _timer.Stop();
+                DialogResult quitORcontinue = MessageBox.Show("Przegrałes. Chcesz zagrać ponownie?", "Wyjdz", MessageBoxButtons.YesNo);
+
+                if(quitORcontinue==DialogResult.Yes)
+                {
+                    foreach(Label block in BlockLabels)
+                    {
+                        block.BackColor = _blockEmptyColor[0];
+                    }
+                    _blocksFilled = new bool[40];
+                    _tetrisPiecePossition = -3;
+                    _timer.Start();
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+
         }
 
 
