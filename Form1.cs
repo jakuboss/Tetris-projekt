@@ -72,6 +72,59 @@ namespace Tetirs
                     }
                 }
             }
+            if(BlockLabels[35].BackColor ==_blockEmptyColor[1]&&
+               BlockLabels[36].BackColor == _blockEmptyColor[1] &&
+               BlockLabels[37].BackColor == _blockEmptyColor[1] &&
+               BlockLabels[38].BackColor == _blockEmptyColor[1] &&
+               BlockLabels[39].BackColor == _blockEmptyColor[1] )
+            {
+                //Linia wolnego pola
+                BlockLabels[35].BackColor = _blockEmptyColor[0];
+                BlockLabels[36].BackColor = _blockEmptyColor[0];
+                BlockLabels[37].BackColor = _blockEmptyColor[0];
+                BlockLabels[38].BackColor = _blockEmptyColor[0];
+                BlockLabels[39].BackColor = _blockEmptyColor[0];
+
+                int amountBlocks = 0;
+
+                _blocksFilled = new bool[40];
+
+                foreach(Label block in BlockLabels)
+                {
+                    if(block.BackColor==_blockEmptyColor[1])
+                    {
+                        _blocksFilled[amountBlocks + 5] = true;
+                    }
+                    amountBlocks++;
+                }
+
+
+                foreach(Label block in BlockLabels)
+                {
+                    block.BackColor = _blockEmptyColor[0];
+                }
+
+                int amountBlue = 0;
+                foreach (bool blockFilled in _blocksFilled)
+                {
+                if(blockFilled == true)
+                    {
+                        BlockLabels[amountBlue].BackColor = _blockEmptyColor[1];
+                    }
+                    amountBlue++;
+                }
+                if (_tetrisPiecePossition < 40)
+                {
+                    if(BlockLabels[_tetrisPiecePossition].BackColor==_blockEmptyColor[0])
+                    {
+                        BlockLabels[_tetrisPiecePossition].BackColor = _blockEmptyColor[1];
+                        if (_tetrisPiecePossition > 5)
+                        {
+                            BlockLabels[_tetrisPiecePossition - 5].BackColor = _blockEmptyColor[0];
+                        }
+                    }
+                }
+            }
 
         }
 
