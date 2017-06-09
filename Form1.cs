@@ -55,6 +55,29 @@ namespace Tetirs
         {
             _tetrisPiecePossition += 5;
 
+            if (_tetrisPiecePossition < 35)
+            {
+                if(BlockLabels[_tetrisPiecePossition].BackColor==_blockEmptyColor[1])
+                {
+                    _tetrisPiecePossition = 2;
+
+                }
+            }
+
+
+            if(_tetrisPiecePossition==2)
+            {
+                int amount = 0;
+                foreach(Label block in BlockLabels)
+                {
+                    if(block.BackColor==_blockEmptyColor[1])
+                    {
+                        _blocksFilled[amount] = true;
+
+                    }
+                    amount++;
+                }
+            }
             if (_tetrisPiecePossition>40)
             {
                 _tetrisPiecePossition = 2;
