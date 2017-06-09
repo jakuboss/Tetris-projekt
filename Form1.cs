@@ -26,7 +26,7 @@ namespace Tetirs
             InitializeComponent();
 
             _timer = new Timer();
-            _timer.Interval = 150;
+            _timer.Interval = 50;
             _timer.Enabled = true;
             _timer.Tick += new System.EventHandler(TimerTickEvent);
 
@@ -72,12 +72,62 @@ namespace Tetirs
                     }
                 }
             }
+
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Left)
+            {
+                if(_tetrisPiecePossition<39 &_blocksFilled[_tetrisPiecePossition]==false)
+                {
+                    if (_tetrisPiecePossition != 0 &&
+                        _tetrisPiecePossition != 5 &&
+                        _tetrisPiecePossition != 10 &&
+                        _tetrisPiecePossition != 15 &&
+                        _tetrisPiecePossition != 20 &&
+                        _tetrisPiecePossition != 25 &&
+                        _tetrisPiecePossition != 30 &&
+                        _tetrisPiecePossition != 35 &&
+                        BlockLabels[_tetrisPiecePossition - 1].BackColor != _blockEmptyColor[1])
+                    {
+                        _tetrisPiecePossition--;
+                        BlockLabels[_tetrisPiecePossition].BackColor = _blockEmptyColor[1];
+                        BlockLabels[_tetrisPiecePossition + 1].BackColor = _blockEmptyColor[0];
+                        return true;
+                    }
+                        
+                }
+            }
+            if (keyData == Keys.Right)
+            {
+                if (_tetrisPiecePossition < 39 & _blocksFilled[_tetrisPiecePossition] == false)
+                {
+                    if (_tetrisPiecePossition != 0 &&
+                        _tetrisPiecePossition != 4 &&
+                        _tetrisPiecePossition != 9 &&
+                        _tetrisPiecePossition != 14 &&
+                        _tetrisPiecePossition != 19 &&
+                        _tetrisPiecePossition != 24 &&
+                        _tetrisPiecePossition != 29 &&
+                        _tetrisPiecePossition != 34 &&
+                        BlockLabels[_tetrisPiecePossition + 1].BackColor != _blockEmptyColor[1])
+                    {
+                        _tetrisPiecePossition++;
+                        BlockLabels[_tetrisPiecePossition].BackColor = _blockEmptyColor[1];
+                        BlockLabels[_tetrisPiecePossition - 1].BackColor = _blockEmptyColor[0];
+                        return true;
+                    }
+
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
