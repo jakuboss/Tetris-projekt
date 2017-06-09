@@ -26,11 +26,14 @@ namespace Tetirs
             InitializeComponent();
 
             _timer = new Timer();
-            _timer.Interval = 200;
+            _timer.Interval = 150;
             _timer.Enabled = true;
             _timer.Tick += new System.EventHandler(TimerTickEvent);
 
             _blockEmptyColor = new Color[2];
+
+            _blocksFilled = new bool[40];
+
             _tetrisPiecePossition = -3;
 
             _blockEmptyColor[0] = Color.Orange;
@@ -51,6 +54,11 @@ namespace Tetirs
         private void TimerTickEvent(object sender, EventArgs e)
         {
             _tetrisPiecePossition += 5;
+
+            if (_tetrisPiecePossition>40)
+            {
+                _tetrisPiecePossition = 2;
+            }
 
             if (_tetrisPiecePossition < 40)
             {
